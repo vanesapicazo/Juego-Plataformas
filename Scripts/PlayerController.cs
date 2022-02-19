@@ -9,12 +9,14 @@ public class PlayerController : MonoBehaviour
     public float speed;
     bool faceRight = true;
     SpriteRenderer myRenderer;
+    Animator myAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
         myRenderer = GetComponent<SpriteRenderer>();
+        myAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
         }
 
         myRB.velocity = new Vector2(move * speed, myRB.velocity.y);
+        myAnimator.SetFloat("MoveSpeed", Mathf.Abs(move));
     }
 
     void Turn()
